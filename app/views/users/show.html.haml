@@ -1,0 +1,20 @@
+%p{:id=>"notice"}
+  = notice
+
+%p
+  <b>Name:</b>
+  = @user.name
+
+%p
+  <b>Email:</b>
+  = @user.email
+
+%ul
+  - if @user.microposts.length == 0 then
+    %li No posts
+  - else
+    - @user.microposts.each do |m|
+      %li= render "/micropost", :m => m
+
+= link_to 'Edit', edit_user_path(@user) |
+= link_to 'Back', users_path
